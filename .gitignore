@@ -11,7 +11,7 @@ Ignore bundler config.
 
 # Ignore other unneeded files.
 
-config/secrets.yml
+config/secrets.development.yml
 
 database.yml
 doc/
