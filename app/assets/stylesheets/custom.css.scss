@@ -16,13 +16,7 @@ $grayMediumLight: #eaeaea;
 				box-sizing: border-box;
 }
 
-.nav {
-				li {
-								display: inline-block;
-				}
-				/*display: inline-block;*/
-				text-align: right
-}
+
 
 /* universal */
 
@@ -78,6 +72,14 @@ p {
 
 
 /* header */
+
+.nav {
+				li {
+								display: inline-block;
+				}
+				/*display: inline-block;*/
+				text-align: right
+}
 
 #logo {
 				float: left;
@@ -167,11 +169,22 @@ aside {
 
 /* forms */
 
+.row {
+
+	.span6 {
+
+		/* text-align: center; */
+
+	}
+}
+
+
 input, textarea, select, .uneditable-input {
 				border: 1px solid #bbb;
-				width: 100%;
+				width: 50%;
 				margin-bottom: 15px;
 				@include box_sizing;
+				
 }
 
 input {
