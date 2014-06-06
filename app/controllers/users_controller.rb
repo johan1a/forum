@@ -1,14 +1,15 @@
 class UsersController < ApplicationController
-				before_action :signed_in_user, only: [:index, :edit, :update]
+				before_action :signed_in_user, only: [:index, :edit, :update, :destroy]
 				before_action :correct_user,   only: [:edit, :update]
-				before_action :set_user, only: [:show, :edit, :update, :destroy]
+
+				before_action :admin_user,     only: :destroy
 
 				def index
 								@users = User.paginate(page: params[:page])
 				end
 
 				def show
-								 @user = User.find(params[:id])
+								@user = User.find(params[:id])
 				end
 
 
@@ -66,11 +67,10 @@ class UsersController < ApplicationController
 				end
 end
 
-# DELETE /users/1
-# DELETE /users/1.json
 def destroy
-				sign_out
-				redirect_to root_url
+				User.find(params[:id]).destroy
+				flash[:success] = "User deleted."
+				redirect_to users_url
 end
 
 private
@@ -82,4 +82,8 @@ end
 # Never trust parameters from the scary internet, only allow the white list through.
 def user_params
 				params.require(:user).permit(:name, :email)
+end
+
+def admin_user
+				redirect_to(root_url) unless current_user.admin?
 end
