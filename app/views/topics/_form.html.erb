@@ -1,6 +1,4 @@
-
-
-<% form_for @topic do |f| %>
+<%= form_for @topic do |f| %>
   <% if @topic.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@topic.errors.count, "error") %> prohibited this topic from being saved:</h2>
@@ -18,10 +16,12 @@
 <p>
 	<%= f.label :name %><br />
 	<%= f.text_field :name %>
+
+
 </p>
 <p>
 
-	<textarea name="post[content]" cols="80" rows="20"><%= @post.content %></textarea>
+	
 </p>
 <p><%= f.submit "Create" %></p>
 <% end %>

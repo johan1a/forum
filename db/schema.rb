@@ -11,13 +11,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140606215243) do
+ActiveRecord::Schema.define(version: 20140607215243) do
 
   create_table "forums", force: true do |t|
     t.string   "name"
     t.text     "description"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "last_poster_id"
+    t.datetime "last_post_at"
   end
 
   create_table "microposts", force: true do |t|

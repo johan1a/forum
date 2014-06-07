@@ -1,4 +1,4 @@
-<h1>Listing topics</h1>
+<h1>Listing threads</h1>
 
 <table>
   <thead>
@@ -16,9 +16,11 @@
         <td><%= topic.name %></td>
         <td><%= topic.last_poster_id %></td>
         <td><%= topic.last_post_at %></td>
-        <td><%= link_to 'Show', topic %></td>
+
+        <% if admin? %>
         <td><%= link_to 'Edit', edit_topic_path(topic) %></td>
         <td><%= link_to 'Destroy', topic, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>

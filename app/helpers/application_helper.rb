@@ -2,7 +2,7 @@ module ApplicationHelper
 
 	# Returns the full title on a per-page basis.
 	def full_title(page_title)
-		base_title = "Ruby on Rails Tutorial Sample App"
+		base_title = "Test Forum"
 		if page_title.empty?
 			base_title
 		else
@@ -10,14 +10,11 @@ module ApplicationHelper
 		end
 	end
 
-
-
 	def admin?
-		if current_user.permission_level == 1 || current_user.id == 1
-			return true
-		else
+		if !signed_in?
 			return false
 		end
+		return  current_user.permission_level == 1 || current_user.id == 1
 	end
 
 	def owner?(id)

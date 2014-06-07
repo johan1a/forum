@@ -1,6 +1,6 @@
 class ForumsController < ApplicationController
   #before_action :set_forum, only: [:show, :edit, :update, :destroy]
-#  before_filter :admin_required, :except => [:index, :show]
+  before_filter :admin_required, :except => [:index, :show]
 
   # GET /forums
   # GET /forums.json
@@ -28,7 +28,7 @@ class ForumsController < ApplicationController
   def create
     @forum = Forum.new(forum_params)
       if @forum.save
-        redirect_to @forum#, notice: 'Forum was successfully created.' 
+        redirect_to @forum, :flash => {:notice => "Forum was successfully created."}
       else
         format.html { render :new }
         format.json { render json: @forum.errors, status: :unprocessable_entity }

@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
 	before_action :set_post, only: [:show, :edit, :update, :destroy]
-	before_filter :login_required
+	before_filter :signed_in_user
 
 	# GET /posts
 	# GET /posts.json
@@ -22,12 +22,15 @@ class PostsController < ApplicationController
 
 
 	def create
-		@post = Post.new #(:content => params[:post][:content], :topic_id => params[:post][:topic_id], :user_id => current_user.id)
+		@post = Post.new(:content => params[:post][:content], :topic_id => params[:post][:topic_id], :user_id => current_user.id)
 		if @post.save
 			@topic = Topic.find(@post.topic_id)
 			@topic.update_attributes(:last_poster_id => current_user.id, :last_post_at => Time.now)
+
+			@forum = Forum.find(@topic.forum_id)
+			@forum.update_attributes(:last_poster_id => current_user.id, :last_post_at => Time.now)
 			flash[:notice] = "Successfully created post."
-			redirect_to "/topics/#{@post.topic_id}"
+			redirect_to @topic
 		else
 			render :action => 'new'
 		end
