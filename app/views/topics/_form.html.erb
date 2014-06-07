@@ -1,0 +1,27 @@
+
+
+<% form_for @topic do |f| %>
+  <% if @topic.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@topic.errors.count, "error") %> prohibited this topic from being saved:</h2>
+
+      <ul>
+      <% @topic.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+
+<% if params[:forum] %><input type="hidden" id="topic_forum_id" name="topic[forum_id]" value="<%= params[:forum] %>" /><% end %>
+<p>
+	<%= f.label :name %><br />
+	<%= f.text_field :name %>
+</p>
+<p>
+
+	<textarea name="post[content]" cols="80" rows="20"><%= @post.content %></textarea>
+</p>
+<p><%= f.submit "Create" %></p>
+<% end %>

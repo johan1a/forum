@@ -11,13 +11,40 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140606015804) do
+ActiveRecord::Schema.define(version: 20140606215243) do
+
+  create_table "forums", force: true do |t|
+    t.string   "name"
+    t.text     "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "microposts", force: true do |t|
     t.string   "content"
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  add_index "microposts", ["user_id", "created_at"], name: "index_microposts_on_user_id_and_created_at"
+
+  create_table "posts", force: true do |t|
+    t.text     "content"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "topic_id"
+    t.integer  "user_id"
+  end
+
+  create_table "topics", force: true do |t|
+    t.string   "name"
+    t.integer  "last_poster_id"
+    t.datetime "last_post_at"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "forum_id"
+    t.integer  "user_id"
   end
 
   create_table "users", force: true do |t|
@@ -28,6 +55,7 @@ ActiveRecord::Schema.define(version: 20140606015804) do
     t.string   "password_digest"
     t.string   "remember_token"
     t.boolean  "admin"
+    t.integer  "permission_level"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true
