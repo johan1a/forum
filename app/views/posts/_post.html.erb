@@ -1,0 +1,21 @@
+<div class="post" >
+	<span class="left"><%= link_to post.user.name, user_url(post.user) %>:
+		
+		
+		<br />
+		<span class="content"><%= post.content %></span>
+		
+		<span class="right"><small>Posted at <%=post.created_at%></small></span>
+		<br />
+		
+		<% if signed_in? %>
+			<% if admin_or_owner?(post.user.id) %>
+			<small>
+				<%= link_to "Edit", edit_post_path(post) %>
+				<%= link_to "Delete", post, :confirm => 'Are you sure?', :method => :delete %>
+			</small>
+			<% end %>
+		<% end %>
+	</span>
+<br />
+</div>

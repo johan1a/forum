@@ -12,6 +12,7 @@ class ForumsController < ApplicationController
   # GET /forums/1.json
   def show
     @forum = Forum.find(params[:id])
+    @topics = @forum.topics.order("last_post_at desc").paginate(:page => params[:page])
   end
 
   # GET /forums/new

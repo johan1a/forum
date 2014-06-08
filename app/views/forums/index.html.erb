@@ -1,30 +1,15 @@
 <h1>Forums</h1>
+<p id="notice"><%= notice %></p>
 <table>
   <tr>
     <th width="92%">Forum</th>
     <th width="10%">Last Activity</th>
   </tr>
-  <% for forum in @forums %>
-  <tr>
-    <td><h4><%= link_to h(forum.name), forum_path(forum.id) %></h4>
-      <small>
-        <%=h forum.description %><br />
-        <%= forum.topics.count %> topics
-      </small>
-          <td class="right">
-      <%= distance_of_time_in_words_to_now forum.updated_at %> ago
 
-      </td>
-    </td>
-    </td>
-      
-      <% if admin? %>
-       <td><%= link_to "Edit", edit_forum_path(forum) %></td>
-       <td><%= link_to "Destroy", forum, :confirm => 'Are you sure?', :method => :delete %></td>
-      <% end %>
-    </tr>
-    <% end %>
-  </table>
+  <%= render @forums %>
+
+</table>
+
 <% if admin? %>
   <p><%= link_to "New Forum", new_forum_path %></p>
 <% end %>

@@ -4,7 +4,7 @@ class UsersController < ApplicationController
 	before_action :admin_user,     only: :destroy
 
 	def index
-		@users = User.paginate(page: params[:page])
+		@users = User.order("name").paginate(page: params[:page], :per_page => 10)
 	end
 
 	def show
@@ -33,7 +33,7 @@ class UsersController < ApplicationController
 		@user = User.new(user_params.merge(:permission_level => 0))
 		if @user.save
 			sign_in @user
-			flash[:success] = 'Registration successful!'
+			#flash[:success] = 'Registration successful!'
 			redirect_to root_url
 		else
 			render 'new'

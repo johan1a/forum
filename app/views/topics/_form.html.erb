@@ -1,4 +1,4 @@
-<%= form_for @topic do |f| %>
+<%= form_for @topic, :html => {:class => 'input_area'} do |f| %>
   <% if @topic.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@topic.errors.count, "error") %> prohibited this topic from being saved:</h2>
@@ -12,7 +12,9 @@
   <% end %>
 
 
-<% if params[:forum] %><input type="hidden" id="topic_forum_id" name="topic[forum_id]" value="<%= params[:forum] %>" /><% end %>
+<% if params[:forum] %>
+<input type="hidden" id="topic_forum_id" name="topic[forum_id]" value="<%= params[:forum] %>" />
+<% end %>
 <p>
 	<%= f.label :name %><br />
 	<%= f.text_field :name %>

@@ -1,4 +1,4 @@
-<%= form_for(@forum) do |f| %>
+<%= form_for(@forum), :html => {:class => "input_area"} do |f| %>
   <% if @forum.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@forum.errors.count, "error") %> prohibited this forum from being saved:</h2>

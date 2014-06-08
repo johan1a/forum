@@ -1,0 +1,17 @@
+<tr>
+    <td>
+      <h4><%= link_to h(forum.name), forum_path(forum.id) %></h4>
+      <small>
+        <%=h forum.description %><br />
+        <%= forum.topics.count %> threads
+      </small>
+        <td class="right">
+            <%= distance_of_time_in_words_to_now forum.updated_at %> ago
+        </td>
+    </td>
+      
+      <% if admin? %>
+       <td><%= link_to "Edit", edit_forum_path(forum) %></td>
+       <td><%= link_to "Destroy", forum, :confirm => 'Are you sure?', :method => :delete %></td>
+      <% end %>
+</tr>
